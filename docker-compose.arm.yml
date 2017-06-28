@@ -1,21 +1,19 @@
-server:
-  image: busbyjon/zenbot:arm
-  volumes:
-    - .:/app
-    - /app/node_modules
-  links:
-    - mongodb
-  command: ./zenbot.sh trade --paper
-  restart: always
+version: "3"
 
-mongodb:
-  image: hypriot/rpi-mongo:latest
-  volumes_from:
-    - mongodb-data
-  command: mongod --smallfiles
+services:
+  server:
+    image: busbyjon/zenbot:arm
+    volumes:
+      - .:/app
+      - /app/node_modules
+    links:
+      - mongodb
+    command: ./zenbot.sh trade --paper
+    restart: always
 
-mongodb-data:
-  image: hypriot/rpi-mongo:latest
-  volumes:
-    - /data/zenbot-db/data/zenbot-db
-  command: "true"
+  mongodb:
+    image: hypriot/rpi-mongo:latest
+    volumes:
+      - /data/zenbot-db/data/zenbot-db
+    command: mongod --smallfiles
+
