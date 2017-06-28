@@ -1,0 +1,6 @@
+FROM hypriot/rpi-node:latest
+
+ADD . /app
+WORKDIR /app
+
+RUN npm install
