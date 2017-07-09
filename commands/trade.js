@@ -154,7 +154,7 @@ module.exports = function container (get, set, clear) {
                     forwardScan()
                     setInterval(forwardScan, c.poll_trades)
                     readline.emitKeypressEvents(process.stdin)
-                    process.stdin.setRawMode(true)
+                    //process.stdin.setRawMode(true)  
                     process.stdin.on('keypress', function (key, info) {
                       if (key === 'b' && !info.ctrl ) {
                         engine.executeSignal('buy')
