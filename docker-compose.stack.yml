@@ -7,10 +7,20 @@ services:
       - mongodb
     command: ./zenbot.sh trade --paper
     restart: always
+    networks:
+      - zenbotapp
+
 
   mongodb:
     image: mongo:latest
     volumes:
       - ./data/db:/data/db
     command: mongod --smallfiles
+    networks:
+      zenbotapp:
+        aliases:
+          - mongodb
 
+
+networks:
+    zenbotapp:
