@@ -16,6 +16,8 @@ services:
     volumes:
       - ./data/db:/data/db
     command: mongod --smallfiles
+    ports:
+      - "27017:27017"
     networks:
       zenbotapp:
         aliases:
