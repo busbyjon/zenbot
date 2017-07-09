@@ -3,14 +3,14 @@ version: "3"
 services:
   server:
     image: busbyjon/zenbot:latest
-    links:
-      - mongodb
     command: ./zenbot.sh trade --paper
+    depends_on: 
+      - mongodb
     restart: always
     networks:
       - zenbotapp
-
-
+    environment:
+      - MONGODB_PORT_27017_TCP_ADDR=mongodb
   mongodb:
     image: mongo:latest
     volumes:
@@ -20,7 +20,5 @@ services:
       zenbotapp:
         aliases:
           - mongodb
-
-
 networks:
     zenbotapp:
