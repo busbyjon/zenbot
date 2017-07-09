@@ -2,17 +2,15 @@ version: "3"
 
 services:
   server:
-    image: busbyjon/zenbot:arm
-    volumes:
-      - /app/node_modules
+    image: busbyjon/zenbot:latest
     links:
       - mongodb
     command: ./zenbot.sh trade --paper
     restart: always
 
   mongodb:
-    image: hypriot/rpi-mongo:latest
+    image: mongo:latest
     volumes:
-      - /data/zenbot-db/data/zenbot-db
+      - ./data/db:/data/db
     command: mongod --smallfiles
 
